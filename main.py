@@ -271,7 +271,7 @@ def main(image_nmr):
     else:
         short_term = "lang"
         
-    # 5) Ausgabe
+    # output
     print(f"\n--- Zusammenfassung {image_nmr} ---")
     print(f"Langer Schenkel : {inbus_long_mm :.2f} mm"
         f"  (Δ = {diff_long :+6.2f} mm, also zu {long_term})")
@@ -291,10 +291,10 @@ def main(image_nmr):
     def warp_box_to_original(pt1, w, h, Hinv):
         """pt1 = (x, y) links-oben im Warp-Bild; w/h = Breite/Höhe"""
         pts = np.array([
-            [pt1[0],       pt1[1]],        # links-oben
-            [pt1[0]+w,     pt1[1]],        # rechts-oben
-            [pt1[0]+w,     pt1[1]+h],      # rechts-unten
-            [pt1[0],       pt1[1]+h]       # links-unten
+            [pt1[0],       pt1[1]],        # top-left
+            [pt1[0]+w,     pt1[1]],        # top-right
+            [pt1[0]+w,     pt1[1]+h],      # bottom-right
+            [pt1[0],       pt1[1]+h]       # bottom-left
         ], dtype=np.float32).reshape(-1,1,2)
         return cv2.perspectiveTransform(pts, Hinv).reshape(-1,2).astype(int)
 
@@ -303,8 +303,8 @@ def main(image_nmr):
 
     orig_vis = original_image.copy()
 
-    cv2.polylines(orig_vis, [inbus_poly], True, (0,0,255),  2, cv2.LINE_AA)   # ROT
-    cv2.polylines(orig_vis, [coin_poly],  True, (0,255,0),  2, cv2.LINE_AA)   # GRÜN
+    cv2.polylines(orig_vis, [inbus_poly], True, (0,0,255),  2, cv2.LINE_AA)   # RED
+    cv2.polylines(orig_vis, [coin_poly],  True, (0,255,0),  2, cv2.LINE_AA)   # GREEN
 
 
     PAD = 20
