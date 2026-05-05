@@ -1,6 +1,6 @@
 # Inbus size detection
 
-##Process
+## Process
 * Loads the image, scales it to a width of 1500 px
 * Grayscale + Gaussian blur (blur_image)
 * Binary threshold + erosion/dilation (apply_threshold)
