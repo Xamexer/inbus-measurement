@@ -14,6 +14,6 @@
 * Output results (lengths, deviations) in the console
 
 ## Result
-1.11% difference
+avg ~1.11% difference
 
 ![Example](example.png)
